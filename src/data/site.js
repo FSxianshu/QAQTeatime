@@ -7,15 +7,6 @@ const coverImages = import.meta.glob(
   },
 )
 
-const downloadArchives = import.meta.glob(
-  '../../download/*.{zip,rar,7z}',
-  {
-    eager: true,
-    query: '?url',
-    import: 'default',
-  },
-)
-
 function resolveAsset(assets, filename) {
   const entry = Object.entries(assets).find(([path]) =>
     path.endsWith(`/${filename}`),
@@ -23,6 +14,9 @@ function resolveAsset(assets, filename) {
 
   return entry?.[1] ?? ''
 }
+
+const releaseDownloadBase =
+  'https://github.com/FSxianshu/QAQTeatime/releases/download/downloads-v1'
 
 export const navItems = [
   { id: 'home', label: 'Home' },
@@ -61,7 +55,6 @@ const projectRecords = [
   {
     id: 'close-to-me',
     title: 'close to me',
-    archiveFile: 'close to me.zip',
     coverFile: 'close to me.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与随附音频。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -70,7 +63,6 @@ const projectRecords = [
   {
     id: 'minazuki-no-tooriame',
     title: '水無月の通り雨',
-    archiveFile: '水無月の通り雨.zip',
     coverFile: '水無月の通り雨.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与随附音频。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -79,7 +71,6 @@ const projectRecords = [
   {
     id: 'suisei-to-machi',
     title: '彗星と街',
-    archiveFile: '彗星と街.zip',
     coverFile: '彗星と街.jpg',
     description: '工程内含 SVP、USTX、MIDI、伴奏及相关工程文件。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -88,7 +79,6 @@ const projectRecords = [
   {
     id: 'sensu-naki-kokoro',
     title: '扇子なき心',
-    archiveFile: '扇子なき心.zip',
     coverFile: '扇子なき心.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与随附音频。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -97,7 +87,6 @@ const projectRecords = [
   {
     id: 'kafuka',
     title: '化孵化（kafuka）',
-    archiveFile: '化孵化（kafuka）.zip',
     coverFile: 'kafuka.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与伴奏。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -106,7 +95,6 @@ const projectRecords = [
   {
     id: 'beadama',
     title: 'ビー玉',
-    archiveFile: 'ビー玉.zip',
     coverFile: 'ビー玉.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与伴奏。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -115,7 +103,6 @@ const projectRecords = [
   {
     id: 'tell-me-why-you-sing',
     title: '告诉我你歌唱的理由吧',
-    archiveFile: '告诉我你歌唱的理由吧.zip',
     coverFile: '告诉我你歌唱的理由吧.jpg',
     description: '工程内含单人版本、SVP、USTX、UST、MIDI 与伴奏。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -124,7 +111,6 @@ const projectRecords = [
   {
     id: 'summer-s-end',
     title: '夏日尽头的我们',
-    archiveFile: '夏日尽头的我们.zip',
     coverFile: '夏日尽头的我们.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与伴奏。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -133,7 +119,6 @@ const projectRecords = [
   {
     id: 'regretful-patchwork',
     title: '拼接遗憾',
-    archiveFile: '拼接遗憾.zip',
     coverFile: '拼接遗憾.jpg',
     description: '工程内含 SVP、USTX、UST、MIDI 与伴奏。',
     formats: ['SVP', 'USTX', 'MIDI'],
@@ -142,7 +127,7 @@ const projectRecords = [
 ]
 
 export const engineeringFiles = projectRecords.map((project, index) => {
-  const href = resolveAsset(downloadArchives, project.archiveFile)
+  const href = `${releaseDownloadBase}/${project.id}.zip`
 
   return {
     ...project,
@@ -151,7 +136,7 @@ export const engineeringFiles = projectRecords.map((project, index) => {
     updated: '2026.11.14',
     href,
     cover: resolveAsset(coverImages, project.coverFile),
-    available: Boolean(href),
+    available: true,
     featured: index === 0,
   }
 })
