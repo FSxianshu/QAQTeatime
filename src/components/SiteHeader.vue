@@ -19,7 +19,6 @@ const mobileOpen = ref(false)
 const activeIndex = ref(0)
 const audioRef = ref(null)
 const isBgmPlaying = ref(false)
-let autoplayRetryReady = false
 const segmentItems = computed(() => props.items.map((item) => item.label))
 const activeLabel = computed(
   () => props.items[activeIndex.value]?.label ?? props.items[0]?.label ?? '',
@@ -58,33 +57,7 @@ async function playBgm() {
     await audio.play()
   } catch {
     isBgmPlaying.value = false
-    armAutoplayRetry()
   }
-}
-
-function disarmAutoplayRetry() {
-  if (!autoplayRetryReady) return
-  autoplayRetryReady = false
-  window.removeEventListener('pointerdown', retryAutoplay, true)
-  window.removeEventListener('keydown', retryAutoplay, true)
-}
-
-function armAutoplayRetry() {
-  if (autoplayRetryReady) return
-  autoplayRetryReady = true
-  window.addEventListener('pointerdown', retryAutoplay, {
-    capture: true,
-    once: true,
-  })
-  window.addEventListener('keydown', retryAutoplay, {
-    capture: true,
-    once: true,
-  })
-}
-
-function retryAutoplay() {
-  disarmAutoplayRetry()
-  void playBgm()
 }
 
 async function toggleBgm() {
@@ -112,15 +85,11 @@ watch(mobileOpen, (isOpen) => {
 
 onMounted(() => {
   window.addEventListener('keydown', closeOnEscape)
-  window.requestAnimationFrame(() => {
-    void playBgm()
-  })
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', closeOnEscape)
   document.body.classList.remove('nav-open')
-  disarmAutoplayRetry()
 })
 </script>
 
@@ -245,8 +214,7 @@ onBeforeUnmount(() => {
           ref="audioRef"
           class="ticket-bgm-audio"
           :src="bgmUrl"
-          preload="auto"
-          autoplay
+          preload="metadata"
           playsinline
           @play="isBgmPlaying = true"
           @pause="isBgmPlaying = false"
