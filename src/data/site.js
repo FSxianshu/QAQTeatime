@@ -30,7 +30,7 @@ export const profile = {
   role: '歌声合成相关个人站点',
   intro: '',
   email: 'FSxianshu@163.com',
-  updatedAt: '2026.11.14',
+  updatedAt: '2026.11.18',
   bannerCredit: '背景画师 · 武内崇',
   focusAreas: [
     {
@@ -52,6 +52,15 @@ export const profile = {
 }
 
 const projectRecords = [
+  {
+    id: 'uchuu-no-fushigi',
+    title: 'うちゅうのふしぎ',
+    coverFile: 'うちゅうのふしぎ.jpg',
+    description: '工程内含 SVP、USTX、UST、MIDI、伴奏与示例音频。',
+    formats: ['SVP', 'USTX', 'MIDI'],
+    size: '6.6 MB',
+    updated: '2026.11.18',
+  },
   {
     id: 'close-to-me',
     title: 'close to me',
@@ -133,7 +142,7 @@ export const engineeringFiles = projectRecords.map((project, index) => {
     ...project,
     category: '工程',
     format: 'ZIP',
-    updated: '2026.11.14',
+    updated: project.updated ?? '2026.11.14',
     href,
     cover: resolveAsset(coverImages, project.coverFile),
     available: true,
