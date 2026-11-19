@@ -20,6 +20,7 @@ const releaseDownloadBase =
 
 export const navItems = [
   { id: 'home', label: 'Home' },
+  { id: 'commission', label: 'Commission' },
   { id: 'downloads', label: 'Downloads' },
   { id: 'guidelines', label: 'Guidelines' },
   { id: 'contact', label: 'Connect' },

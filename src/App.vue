@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import SiteHeader from './components/SiteHeader.vue'
 import SiteFooter from './components/SiteFooter.vue'
 import HomePage from './pages/HomePage.vue'
+import CommissionPage from './pages/CommissionPage.vue'
 import DownloadsPage from './pages/DownloadsPage.vue'
 import GuidelinesPage from './pages/GuidelinesPage.vue'
 import ContactPage from './pages/ContactPage.vue'
@@ -10,6 +11,7 @@ import { navItems, profile } from './data/site'
 
 const pages = {
   home: HomePage,
+  commission: CommissionPage,
   downloads: DownloadsPage,
   guidelines: GuidelinesPage,
   contact: ContactPage,

@@ -8,6 +8,9 @@ const emit = defineEmits(['navigate'])
   <footer class="site-footer">
     <div class="footer-inner container">
       <div class="footer-actions">
+        <button type="button" @click="emit('navigate', 'commission')">
+          个人委托
+        </button>
         <button type="button" @click="emit('navigate', 'guidelines')">
           使用规约
         </button>

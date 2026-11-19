@@ -1811,6 +1811,655 @@ input:focus-visible {
   transform: translate(2px, -2px);
 }
 
+.commission-page {
+  display: flex;
+  min-height: 0;
+  padding: 24px;
+  flex-direction: column;
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+.site-shell.route-commission {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.site-shell.route-commission .site-main {
+  min-height: 0;
+}
+
+.commission-tabs {
+  display: grid;
+  width: min(100%, 560px);
+  margin: 0 auto 10px;
+  padding: 4px;
+  flex: 0 0 auto;
+  gap: 3px;
+  background: rgba(197, 202, 233, 0.2);
+  border: 1px solid rgba(63, 81, 181, 0.1);
+  border-radius: 999px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.commission-tabs button {
+  position: relative;
+  display: flex;
+  min-height: 32px;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  color: var(--secondary-text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-align: center;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.commission-tabs button:hover {
+  color: var(--dark-primary);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.commission-tabs button.active {
+  color: var(--text-icons);
+  background:
+    radial-gradient(circle at 90% 8%, rgba(255, 255, 255, 0.16), transparent 28%),
+    var(--dark-primary);
+  border-color: var(--dark-primary);
+  box-shadow: 0 4px 11px rgba(48, 63, 159, 0.18);
+}
+
+.commission-tabs strong {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.commission-panels {
+  display: flex;
+  width: min(100%, 900px);
+  min-height: 0;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.commission-panels > .commission-section {
+  width: 100%;
+}
+
+.commission-switch-enter-active,
+.commission-switch-leave-active {
+  transition:
+    opacity 170ms ease,
+    transform 170ms ease;
+}
+
+.commission-switch-enter-from {
+  opacity: 0;
+  transform: translateY(7px);
+}
+
+.commission-switch-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+
+.commission-section {
+  position: relative;
+  padding: 24px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 96% 8%, rgba(63, 81, 181, 0.07), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.99), rgba(243, 246, 255, 0.95));
+  border: 1px solid rgba(63, 81, 181, 0.13);
+  border-radius: 10px;
+  box-shadow:
+    0 14px 32px rgba(38, 51, 126, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  overscroll-behavior: contain;
+  scrollbar-color: rgba(63, 81, 181, 0.28) transparent;
+  scrollbar-width: thin;
+}
+
+.commission-notes-title {
+  width: min(92%, 680px);
+  margin: 0 auto 16px;
+  padding-bottom: 10px;
+  color: var(--dark-primary);
+  border-bottom: 1px solid rgba(63, 81, 181, 0.13);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.commission-section::-webkit-scrollbar {
+  width: 5px;
+}
+
+.commission-section::-webkit-scrollbar-thumb {
+  background: rgba(63, 81, 181, 0.24);
+  border-radius: 999px;
+}
+
+.commission-notes {
+  display: grid;
+  width: min(92%, 680px);
+  margin: 0 auto;
+  padding: 0;
+  row-gap: 11px;
+  list-style: none;
+  counter-reset: commission-note;
+  grid-template-columns: 1fr;
+}
+
+.commission-notes li {
+  position: relative;
+  padding-left: 36px;
+  color: var(--primary-text);
+  font-size: 13.5px;
+  line-height: 1.82;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+  counter-increment: commission-note;
+}
+
+.commission-notes li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 24px;
+  height: auto;
+  content: counter(commission-note, decimal-leading-zero);
+  color: rgba(48, 63, 159, 0.56);
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 2.23;
+}
+
+.commission-price-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.commission-package {
+  position: relative;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(63, 81, 181, 0.13);
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+.commission-package-head {
+  display: grid;
+  padding-bottom: 12px;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px dashed rgba(63, 81, 181, 0.16);
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.commission-package h3 {
+  color: var(--dark-primary);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.commission-package-head small {
+  display: block;
+  margin-top: 2px;
+  color: var(--secondary-text);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.commission-package-head > strong {
+  color: var(--dark-primary);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.commission-package ul {
+  display: grid;
+  margin: 12px 0 0;
+  padding: 0;
+  gap: 7px;
+  list-style: none;
+}
+
+.commission-package li {
+  position: relative;
+  padding-left: 12px;
+  color: var(--secondary-text);
+  font-size: 12px;
+  line-height: 1.76;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.commission-package li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  content: "";
+  background: var(--light-primary);
+  border-radius: 50%;
+}
+
+.commission-section-note {
+  margin-bottom: 13px;
+  color: #716b9a;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.commission-free-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+}
+
+.commission-free-card {
+  position: relative;
+  padding: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(63, 81, 181, 0.13);
+  border-radius: 7px;
+}
+
+.commission-free-card:first-child {
+  grid-column: 1 / -1;
+}
+
+.commission-free-card small {
+  display: block;
+  margin-top: 0;
+  color: rgba(48, 63, 159, 0.54);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.commission-free-card h3 {
+  margin-top: 2px;
+  color: var(--dark-primary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.commission-free-card p {
+  margin-top: 3px;
+  color: var(--secondary-text);
+  font-size: 12px;
+  line-height: 1.76;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.commission-example-grid {
+  display: grid;
+  margin-top: 10px;
+  gap: 6px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.commission-example-grid figure {
+  margin: 0;
+  overflow: hidden;
+  background: #eef0fb;
+  border: 1px solid rgba(63, 81, 181, 0.14);
+  border-radius: 5px;
+}
+
+.commission-example-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.commission-example-grid.is-cover img {
+  aspect-ratio: 1;
+  padding: 7px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.commission-video-grid {
+  display: grid;
+  margin-top: 10px;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.commission-video-item {
+  display: block;
+  overflow: hidden;
+  color: var(--primary-text);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(63, 81, 181, 0.16);
+  border-radius: 6px;
+  transition:
+    box-shadow 170ms ease,
+    transform 170ms ease;
+}
+
+.commission-video-item:hover {
+  box-shadow: 0 9px 20px rgba(38, 51, 126, 0.12);
+  transform: translateY(-2px);
+}
+
+.commission-video-cover {
+  position: relative;
+  overflow: hidden;
+  background: #0d1029;
+}
+
+.commission-video-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.commission-video-item:hover .commission-video-cover img {
+  transform: scale(1.025);
+}
+
+.commission-video-cover > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 35px;
+  height: 35px;
+  padding-left: 2px;
+  color: var(--text-icons);
+  background: rgba(16, 20, 50, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 50%;
+  font-size: 13px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.commission-video-copy {
+  display: flex;
+  min-width: 0;
+  padding: 9px 10px 10px;
+  flex-direction: column;
+}
+
+.commission-video-copy small {
+  color: rgba(48, 63, 159, 0.48);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.commission-video-copy strong {
+  margin-top: 3px;
+  overflow: hidden;
+  color: var(--dark-primary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.commission-video-copy > span {
+  margin-top: 6px;
+  color: var(--secondary-text);
+  font-size: 10px;
+}
+
+.commission-faq-list {
+  display: grid;
+  gap: 8px;
+}
+
+.commission-faq {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(63, 81, 181, 0.13);
+  border-radius: 6px;
+  transition:
+    border-color 170ms ease,
+    box-shadow 170ms ease;
+}
+
+.commission-faq:hover {
+  border-color: rgba(63, 81, 181, 0.24);
+}
+
+.commission-faq[open] {
+  border-color: rgba(63, 81, 181, 0.24);
+  box-shadow: 0 7px 17px rgba(38, 51, 126, 0.07);
+}
+
+.commission-faq summary {
+  display: grid;
+  padding: 13px 15px;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+  list-style: none;
+  grid-template-columns: 30px minmax(0, 1fr) 22px;
+}
+
+.commission-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.commission-faq-index {
+  color: rgba(48, 63, 159, 0.48);
+  font-family: var(--font-latin);
+  font-size: 13px;
+}
+
+.commission-faq summary strong {
+  color: var(--primary-text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.commission-faq summary i {
+  color: var(--primary);
+  font-size: 22px;
+  font-style: normal;
+  text-align: center;
+  transition: transform 180ms ease;
+}
+
+.commission-faq[open] summary i {
+  transform: rotate(45deg);
+}
+
+.commission-faq p {
+  padding: 0 48px 15px 56px;
+  color: var(--secondary-text);
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.commission-faq p b {
+  color: var(--dark-primary);
+  font-weight: 600;
+}
+
+.commission-audition-panel {
+  display: flex;
+  padding: 24px;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commission-audition-heading h2 {
+  color: var(--dark-primary);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.commission-audition-heading p {
+  margin-top: 6px;
+  color: #716b9a;
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.commission-audition-sources {
+  display: grid;
+  align-items: stretch;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.commission-audition-card {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  padding: 14px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(63, 81, 181, 0.14);
+  border-radius: 8px;
+}
+
+.commission-audition-card header {
+  width: 100%;
+  min-height: 62px;
+}
+
+.commission-audition-card header small {
+  color: rgba(48, 63, 159, 0.5);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+
+.commission-audition-card header h3 {
+  margin-top: 3px;
+  color: var(--dark-primary);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.commission-audition-card.is-bilibili header h3 {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.commission-audition-card > a:not(.commission-audition-cover) {
+  display: inline-flex;
+  width: 100%;
+  min-height: 36px;
+  margin-top: auto;
+  padding: 0 13px;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-icons);
+  background: var(--primary);
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  transition: background 160ms ease;
+}
+
+.commission-audition-card > a:not(.commission-audition-cover):hover {
+  background: var(--dark-primary);
+}
+
+.commission-audition-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: #0d1029;
+  border-radius: 5px;
+}
+
+.commission-audition-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.commission-audition-cover > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  padding-left: 2px;
+  color: var(--text-icons);
+  background: rgba(16, 20, 50, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  font-size: 12px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.commission-audition-qr {
+  width: 150px;
+  margin: auto;
+  padding: 0;
+  align-self: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+}
+
+.commission-audition-qr img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.commission-audition-qr figcaption {
+  margin-top: 7px;
+  color: var(--secondary-text);
+  font-size: 11px;
+}
+
 .site-footer {
   color: var(--primary-text);
   background: #0b0a14;
@@ -2079,6 +2728,79 @@ input:focus-visible {
     white-space: normal;
   }
 
+  .commission-page {
+    padding: 16px 14px 18px;
+  }
+
+  .commission-tabs {
+    margin-bottom: 8px;
+    gap: 4px;
+  }
+
+  .commission-tabs button {
+    min-height: 36px;
+    padding: 0 6px;
+    gap: 4px;
+  }
+
+  .commission-tabs strong {
+    font-size: 12px;
+  }
+
+  .commission-section {
+    padding: 16px;
+  }
+
+  .commission-notes li {
+    padding-left: 30px;
+    font-size: 13px;
+  }
+
+  .commission-notes-title {
+    width: 92%;
+    margin-bottom: 13px;
+    font-size: 19px;
+  }
+
+  .commission-price-grid,
+  .commission-free-grid,
+  .commission-notes {
+    grid-template-columns: 1fr;
+  }
+
+  .commission-video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commission-free-card h3 {
+    min-height: 0;
+  }
+
+  .commission-audition-panel {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .commission-audition-heading h2 {
+    font-size: 23px;
+  }
+
+  .commission-audition-sources {
+    gap: 10px;
+  }
+
+  .commission-audition-card {
+    padding: 12px;
+  }
+
+  .commission-faq summary {
+    padding: 12px;
+  }
+
+  .commission-faq p {
+    padding: 0 16px 14px 53px;
+  }
+
   .footer-inner {
     min-height: 0;
     padding-block: 12px;
@@ -2115,6 +2837,15 @@ input:focus-visible {
 
   .page-heading h1 {
     font-size: 38px;
+  }
+
+  .commission-audition-qr {
+    width: 170px;
+    align-self: center;
+  }
+
+  .commission-audition-sources {
+    grid-template-columns: 1fr;
   }
 
   .file-card-body {
